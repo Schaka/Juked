@@ -305,7 +305,7 @@ local function Juked_Repos()
 				local name,_,_ = GetSpellInfo(v.spellID)
 				bar[name]:Hide()
 				Juked_AddIcon(name)
-				if JukedDB[CharIndex].hidden and not activetimers[v.spellID] then
+				if JukedDB[CharIndex].hidden and not activetimers[name] then
 					bar[name]:Hide()
 				end
 			end
@@ -320,7 +320,7 @@ local function Juked_Repos()
 		local name, _, _ = GetSpellInfo(v.spellID)
 			if not(isPrio(name) and JukedDB[CharIndex].prio) then
 				bar[name]:Hide()
-				if activetimers[v.spellID] then
+				if activetimers[name] then
 					Juked_AddIcon(name)
 				else 
 					if JukedDB[CharIndex].hidden then
@@ -340,7 +340,7 @@ local function Juked_Repos()
 				if JukedDB[CharIndex].prio and isPrio(name) then
 					bar2[name]:Hide()
 					Juked_AddIcon(name)
-					if JukedDB[CharIndex].hidden2 and not activetimers[v.spellID] then
+					if JukedDB[CharIndex].hidden2 and not activetimers[name] then
 						bar2[k]:Hide()
 					end
 				end
@@ -355,7 +355,7 @@ local function Juked_Repos()
 			local name, _, _ = GetSpellInfo(v.spellID)
 				if JukedDB[CharIndex].prio and isPrio(name) and JukedDB[CharIndex].hidden2 then
 					bar2[k]:Hide()
-					if activetimers[v.spellID] then
+					if activetimers[name] then
 						Juked_AddIcon(name)
 					else
 						if JukedDB[CharIndex].hidden2 then
