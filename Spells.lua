@@ -19,7 +19,7 @@ spell_table = {
 {spellID=6552, time=10, prio=true},--Pummel
 {spellID=23920, time=10, prio=false},--Spell Reflection
 {spellID=1766, time=10, prio=true},--Kick 
-{spellID=8042, time=6, prio=true},--Wind Shear
+{spellID=8042, time=6, prio=true},-- Earth Shock
 {spellID=2139, time=24, prio=true},--Counterspell
 {spellID=19647, time=24, prio=true},--Spell Lock
 {spellID=34490, time=20, prio=true},--Silencing Shot
@@ -53,20 +53,20 @@ spell_table = {
 {spellID=642, time=300, prio=false},--Divine Shield
 {spellID=19263, time=600, prio=false},--Deterrence
 {spellID=22812, time=60, prio=false},--Barkskin
-{spellID=45438, time=240, prio=false},--Ice Block
+{spellID=45438, time=250, prio=false},--Ice Block
 
 
 --Offensive
 {spellID=12292, time=180, prio=false},--Death Wish
-{spellID=32379, time=10, prio=false},--Shadow Word: Death
+{spellID=32379, time=12, prio=false},--Shadow Word: Death
 {spellID=31884, time=180, prio=false},--Avenging Wrath
-{spellID=19574, time=180, prio=false},--Beastial Wrath
+{spellID=19574, time=180, prio=false},--Bestial Wrath
 
 --Other
 {spellID=29166, time=300, prio=false},--Innervate
 {spellID=14185, time=600, prio=false},--Preparation
 {spellID=26888, time=180, prio=false},--Vanish 
-{spellID=18499, time=24, prio=false},--Berserker Rage
+{spellID=18499, time=30, prio=false},--Berserker Rage
 {spellID=11958, time=384, prio=false},--Cold Snap
 {spellID=16190, time=300, prio=false},--Mana Tide Totem.
 {spellID=8177, time=13, prio=false},--Grounding Totem

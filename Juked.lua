@@ -1,46 +1,9 @@
---[[--------------------------------------------------
---Juked by Robrman, Inspired by Kollektiv's InterruptBar
---Version 1.3.8
-CHANGELOG:
---Cleaned up the code
---Updated for 4.3, added some new spells
---Fixed Hidden off smart on (spell icons were stacking)
---Some of the cooldowns may have changed, if they have and I didnt fix them please let me know.
---Fixed for 4.2, added shadowfury, fixed cloak of shadows and combat readiness CD
---Cleaned up some of the code
---Fixed moving the frames
---Fixed spell reflect cd
---Updated for 4.1
---Fixed some issues with profiles, still could be more
---Added profiles, i've tested it works perfectly fine from what i've tried - 
---FINALLY added a GUI for the options.  Use "/juked gui" or "/juked opts" or "/juked config" 
---Added Silencing shot to be reset with Readiness
---Added Readiness resetting Scatter Shot and Deterrence, I probably missed some..its 5 am nobody on to help me test fully, sorry if its incomplete post and i'll fix it
---Cleaned up some of the code, fixed some errors with repositioning
---Added individual locking, hiding and smart modes, still possibly buggy
---Fixed moving, probably still some work to be done there
---Cleaned up the help menu a bit, feedback is appreciated
---Added scaling for main bar and prio bar individually
---Fixed possible problem with Gnaw if used by a transformed ghoul (Thanks Damnationx)
---Fixed Death Coil cooldown to account for Warlock 4 piece bonus -30 seconds (Thanks Damnationx)
---Fixed cooldown timer restarting (if same CD is popped, restart timer. Thanks Damnationx)
---Added Inner Focus   {spellID=89485, time=45, prio=false},--Inner Focus     (Thanks Sazalolz, cant believe i missed it)
---Added /juked prioonly   this will ONLY display cooldowns for spells marked with prio=true
---Added noCD option to disable the numeric cooldown from Juked 
---Fixed some cooldown durations(Thanks Sazalolz for pointing it out)
---Externalized the spell table(Thanks Sazalolz for the suggestion)
---Added test for all modes
---Added a fix for some versions of omniCC
---Fixed Rebuke spellID
---Addon can now be accessed from /juked   /jd   and   /ib(kept this cause i kept typing it by accident)
---Added the option to grow the bars upward from the anchor /juked
-----------------------------------------------------]]
-JukedRealm = GetCVar("realmName");
+JukedRealm = GetRealmName()
 JukedChar = UnitName("player");
 CharIndex=JukedChar.." - "..JukedRealm
 JukedDB=JukedDB or {}
 JukedDB["CharsUse"]=JukedDB["CharsUse"] or {}
-JukedDB["Default"]= JukedDB["Default"] or { scale = 1,scale2=1 , hidden = false,hidden2=false, smart=false, smartPrio=false,prio = false, cols=6, colsPrio=6, arenaOnly=false, bgOnly=false, lock = false,growUp=1,growLeft=1, noCD=false,prioOnly=false,}
+JukedDB["Default"]= JukedDB["Default"] or { scale = 1, scale2 = 1, hidden = true, hidden2 = true, smart = true, smartPrio=true, prio = false, cols=6, colsPrio=6, arenaOnly=false, bgOnly=false, lock = false,growUp=1,growLeft=1, noCD=false,prioOnly=false,}
 JukedDB[CharIndex] = JukedDB[CharIndex] or JukedDB["Default"]--{ scale = 1,scale2=1 , hidden = false,hidden2=false, smart=false, smartPrio=false,prio = false, cols=6, colsPrio=6, arenaOnly=false, bgOnly=false, lock = false,growUp=1,growLeft=1, noCD=false,prioOnly=false,}
 for k,v in pairs(JukedDB) do
 	if not (type(JukedDB[k]) == "table" ) then 
@@ -286,7 +249,7 @@ local function Juked_LoadPosition()
 	else
 		bar:SetPoint("CENTER", UIParent, "CENTER")
 	end
-	if JukedDB[CharIndex].Position.point2 then
+	if JukedDB[CharIndex].Positionww and JukedDB[CharIndex].Position.point2 then
 		bar2:SetPoint(JukedDB[CharIndex].Position.point2,UIParent,JukedDB[CharIndex].Position.relativePoint2,JukedDB[CharIndex].Position.xOfs2,JukedDB[CharIndex].Position.yOfs2)
 	else
 		bar2:SetPoint("CENTER", UIParent, "CENTER")
@@ -1051,7 +1014,7 @@ local function Juked_OnLoad(self)
 	if not JukedDB then
 		JukedDB={}
 	end
-	JukedDB["Default"]= JukedDB["Default"] or { scale = 1,scale2=1 , hidden = false,hidden2=false, smart=false, smartPrio=false,prio = false, cols=6, colsPrio=6, arenaOnly=false, bgOnly=false, lock = false,growUp=1,growLeft=1, noCD=false,prioOnly=false,}
+	JukedDB["Default"]= JukedDB["Default"] or { scale = 1, scale2 = 1, hidden = true, hidden2 = true, smart = true, smartPrio=true, prio = false, cols=6, colsPrio=6, arenaOnly=false, bgOnly=false, lock = false,growUp=1,growLeft=1, noCD=false,prioOnly=false,}
 	JukedDB["CharsUse"]=JukedDB["CharsUse"] or {}
 	
 	if (JukedDB["CharsUse"][CharIndex]) then
@@ -1078,6 +1041,7 @@ local function Juked_OnLoad(self)
 	end
 	
 	Juked_CreateBar()
+	Juked_SavePosition()
 	
 	SlashCmdList["Juked"] = Juked_Command
 	SLASH_Juked1 = "/juked"
