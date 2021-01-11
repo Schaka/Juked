@@ -249,7 +249,7 @@ local function Juked_LoadPosition()
 	else
 		bar:SetPoint("CENTER", UIParent, "CENTER")
 	end
-	if JukedDB[CharIndex].Positionww and JukedDB[CharIndex].Position.point2 then
+	if JukedDB[CharIndex].Position and JukedDB[CharIndex].Position.point2 then
 		bar2:SetPoint(JukedDB[CharIndex].Position.point2,UIParent,JukedDB[CharIndex].Position.relativePoint2,JukedDB[CharIndex].Position.xOfs2,JukedDB[CharIndex].Position.yOfs2)
 	else
 		bar2:SetPoint("CENTER", UIParent, "CENTER")
